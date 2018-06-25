@@ -1,4 +1,4 @@
-## This is spring Study source code in tobi book
+## This is spring study source code in tobi's spring book
 
 * To use SimpleDriverDataSource class in CH1, CH2
 
