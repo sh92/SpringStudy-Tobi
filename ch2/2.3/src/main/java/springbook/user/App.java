@@ -13,10 +13,6 @@ import springbook.user.dao.UserDao;
 import springbook.user.domain.User;
 
 public class App {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		App app = new App();
-		app.addAndGet();
-	}
 
 	@Test
 	public void addAndGet() throws SQLException, ClassNotFoundException {
@@ -36,5 +32,27 @@ public class App {
 
 		assertThat(user2.getName(), is(user.getName()));
 		assertThat(user2.getPassword(), is(user.getPassword()));
+	}
+
+	@Test
+	public void count() throws SQLException, ClassNotFoundException {
+		ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+
+		UserDao dao = context.getBean("userDao", UserDao.class);
+		User user1 = new User("aaaa", "name1", "n1");
+		User user2 = new User("bbbb", "name2", "n2");
+		User user3 = new User("cccc", "name3", "n3");
+
+		dao.deleteAll();
+		assertThat(dao.getCount(), is(0));
+
+		dao.add(user1);
+		assertThat(dao.getCount(), is(1));
+
+		dao.add(user2);
+		assertThat(dao.getCount(), is(2));
+
+		dao.add(user3);
+		assertThat(dao.getCount(), is(3));
 	}
 }
