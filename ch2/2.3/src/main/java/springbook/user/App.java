@@ -14,20 +14,24 @@ import springbook.user.domain.User;
 
 public class App {
 
-	@Test
-	public void addAndGet() throws SQLException, ClassNotFoundException {
+	private UserDao dao;
 
+	@Test
+	public void andAndGet() throws SQLException, ClassNotFoundException {
 		ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
 		UserDao dao = context.getBean("userDao", UserDao.class);
-		User user = new User();
 
-		user.setId("myid");
+		dao.deleteAll();
+		assertThat(dao.getCount(), is(0));
+
+		User user = new User();
+		user.setId("myId");
 		user.setName("myName");
 		user.setPassword("myPassword");
-		// dao.add(user);
 
-		System.out.println("My id is " + user.getId());
+		dao.add(user);
 		assertThat(dao.getCount(), is(1));
+
 		User user2 = dao.get(user.getId());
 
 		assertThat(user2.getName(), is(user.getName()));
