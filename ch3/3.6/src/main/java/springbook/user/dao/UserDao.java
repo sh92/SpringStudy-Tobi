@@ -88,7 +88,4 @@ public class UserDao {
 		});
 	}
 
-	public void deleteAll1() {
-		this.jdbcTemplate.update("delete from users");
-	}
 }
