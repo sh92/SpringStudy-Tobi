@@ -6,7 +6,6 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 public class TxProxyFactoryBean implements FactoryBean<Object> {
-
 	Object target;
 	PlatformTransactionManager transactionManager;
 	String pattern;
@@ -33,7 +32,6 @@ public class TxProxyFactoryBean implements FactoryBean<Object> {
 		txHandler.setTarget(target);
 		txHandler.setTransactionManager(transactionManager);
 		txHandler.setPattern(pattern);
-
 		return Proxy.newProxyInstance(getClass().getClassLoader(), new Class[] { serviceInterface }, txHandler);
 	}
 
