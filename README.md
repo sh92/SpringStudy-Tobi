@@ -1,3 +1,3 @@
-# SpringStudyIn Tobi 
+# SpringStudyInTobi 
 
-* This is source code in tobi's spring book  
+* This is source code in tobi's spring book 
